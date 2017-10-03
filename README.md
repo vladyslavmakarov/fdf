@@ -17,8 +17,8 @@ This project is based on a macos version of a graphical library - minilibx. If y
 * → - Move map left.
 * ↑ - Move map up.
 * ↓ - Move map down.
-* + - Zoom in.
-* - - Zoom out
+* '+' - Zoom in.
+* '-' - Zoom out
 * q - Decrease height.
 * w - Increase height.
 * x - Decrease scale of height.
