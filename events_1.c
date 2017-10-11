@@ -28,8 +28,8 @@ int		key_inputs(int keycode, t_helper *m)
 		scale_z(keycode, m);
 	else if (keycode == 53)
 		ft_finish(keycode, m);
-	printf(GREEN"Vert is: %d\nHor is: %d\nScale is: %f\nAlpha is: %f\nBeta is: %f\nTeta is: %f\n\nKeycode is: %i\n"RESET"\n", m->parameters->vert, m->parameters->hor, m->parameters->scale,
-		m->parameters->a, m->parameters->b, m->parameters->t, keycode);
+	printf(GREEN"Vert is: %d\nHor is: %d\nScale is: %f\nAlpha is: %f\nBeta is: %f\nTeta is: %f\n\nKeycode is: %i\n\nx_c is: %i\ny_c is: %i\nz_min is: %i\nz_max is: %i\n"RESET"\n", m->parameters->vert, m->parameters->hor, m->parameters->scale, 
+	m->parameters->a, m->parameters->b, m->parameters->t, keycode, m->parameters->x_c, m->parameters->y_c, m->parameters->z_min, m->parameters->z_max);
 	return (0);
 }
 

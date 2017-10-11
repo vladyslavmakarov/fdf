@@ -50,12 +50,18 @@ t_point	*get_inputs(char *s, int y, int x, t_figure *h)
 		return (NULL);
 	if (!(result->d_3 = (t_3d *)malloc(sizeof(t_3d))))
 		return (NULL);
+	if (!(result->c = (t_color *)malloc(sizeof(t_color))))
+		return (NULL);
 	i = 0;
 	check = is_color(s);
 	result->d_3->x = (double)x;
 	result->d_3->y = (double)y;
 	if (check == 0)
 		result->d_3->z = ft_atoi(s);
+	if (h->z_min > result->d_3->z)
+		h->z_min = result->d_3->z;
+	if (h->z_max < result->d_3->z)
+		h->z_max = result->d_3->z;
 	else
 	{
 		helper = ft_strsplit(s, ',');
@@ -68,14 +74,24 @@ t_point	*get_inputs(char *s, int y, int x, t_figure *h)
 
 t_point	*transform_2d(t_point *i, t_figure *h)
 {
-	i->d_2->x = (cos(h->a) * cos(h->b) * i->d_3->x +
-	(-sin(h->a) * cos(h->t) + cos(h->a) * sin(h->b) * sin(h->t)) * i->d_3->y +
+	int xt;
+	int yt;
+
+	i->c->r = 0;
+	i->c->g = 255;
+	i->c->b = 0;
+	xt = i->d_3->x - h->x_c;
+	yt = i->d_3->y - h->y_c;
+	i->d_2->x = (cos(h->a) * cos(h->b) * xt +
+	(-sin(h->a) * cos(h->t) + cos(h->a) * sin(h->b) * sin(h->t)) * yt +
 	((-sin(h->a)) * (-sin(h->t)) + cos(h->a) * sin(h->b)
 		* cos(h->t)) * i->d_3->z) * h->scale + h->hor;
-	i->d_2->y = (sin(h->a) * cos(h->b) * i->d_3->x +
-	(cos(h->a) * cos(h->t) + sin(h->a) * sin(h->b) * sin(h->t)) * i->d_3->y +
+	i->d_2->y = (sin(h->a) * cos(h->b) * xt +
+	(cos(h->a) * cos(h->t) + sin(h->a) * sin(h->b) * sin(h->t)) * yt +
 	(cos(h->a) * (-sin(h->t)) + sin(h->a) * sin(h->b)
 		* cos(h->t)) * i->d_3->z) * h->scale + h->vert;
+	i->d_2->x = i->d_2->x + h->x_c;
+	i->d_2->y = i->d_2->y + h->y_c;
 	return (i);
 }
 

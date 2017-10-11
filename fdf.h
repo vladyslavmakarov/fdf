@@ -31,24 +31,30 @@
 
 typedef struct		s_3d
 {
-	double				x;
-	double				y;
-	double				z;
+	double			x;
+	double			y;
+	double			z;
 }					t_3d;
 
 typedef struct		s_2d
 {
-	double				x;
-	double				y;
+	double			x;
+	double			y;
 }					t_2d;
+
+typedef struct		s_color
+{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+}					t_color;
 
 typedef struct		s_point
 {
 	t_2d			*d_2;
 	t_3d			*d_3;
 	signed int		sign;
-//	char			*color;
-//	int 			*color;
+	t_color			*c;
 }					t_point;
 
 typedef struct		s_figure
@@ -56,6 +62,10 @@ typedef struct		s_figure
 	double			a;
 	double			b;
 	double			t;
+	int				x_c;
+	int				y_c;
+	int				z_min;
+	int				z_max;
 	int				vert;
 	int				hor;
 	double			scale;

@@ -29,6 +29,8 @@ t_point	***get_matrix(char **av, t_figure *h)
 	temp = ft_strsplit(input, '\n');
 	y = 0;
 	height = get_mtrx_height(temp);
+	h->x_c = get_mrow_len(temp)/2;
+	h->y_c = height / 2;
 	if (!(result = (t_point ***)malloc(sizeof(t_point **) * (height + 1))))
 		return (NULL);
 	result[height] = NULL;

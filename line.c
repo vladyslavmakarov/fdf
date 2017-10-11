@@ -37,7 +37,7 @@ void	line_0x(t_helper *m, t_2d *d_0, t_2d *d_1, t_draw *draw, int color)
 		}
 		else
 			d += d1;
-		mlx_pixel_put(m->mlx, m->win, x, y, color + i);
+		mlx_pixel_put(m->mlx, m->win, x, y, color);
 		i++;
 		x += draw->sx;
 	}
@@ -71,7 +71,7 @@ void	line_0y(t_helper *m, t_2d *d_0, t_2d *d_1, t_draw *draw, int color)
 		}
 		else
 			d += d1;
-		mlx_pixel_put(m->mlx, m->win, x, y, color + i);
+		mlx_pixel_put(m->mlx, m->win, x, y, color);
 		i++;
 		y += draw->sy;
 	}

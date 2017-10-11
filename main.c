@@ -45,8 +45,12 @@ t_figure	*parameters_init(void)
 	new->a = -5.94;
 	new->b = -6.82;
 	new->t = -5.56;
-	new->vert = 400;
-	new->hor = 300;
+	new->x_c = 0;
+	new->y_c = 0;
+	new->z_min = 0;
+	new->z_max = 0;
+	new->vert = 540;
+	new->hor = 500;
 	new->scale = 40;
 	return (new);
 }
@@ -55,6 +59,7 @@ void	draw_figure(t_helper *m)
 {
 	int i;
 	int j;
+	unsigned long rgb;
 
 	i = 0;
 	while (m->matrix[i])
@@ -64,22 +69,24 @@ void	draw_figure(t_helper *m)
 		{
 			while (m->matrix[i][j])
 			{
+				rgb = (m->matrix[i][j]->c->r << 16) | (m->matrix[i][j]->c->g << 8) | m->matrix[i][j]->c->b;
 				if (m->matrix[i][j + 1] != NULL)
 				{
-					line(m->matrix[i][j]->d_2, m->matrix[i][j + 1]->d_2, m, 0xFF00FF);
-					line(m->matrix[i][j]->d_2, m->matrix[i + 1][j]->d_2, m, 0xFF00FF);
+					line(m->matrix[i][j]->d_2, m->matrix[i][j + 1]->d_2, m, rgb);
+					line(m->matrix[i][j]->d_2, m->matrix[i + 1][j]->d_2, m, rgb);
 				}
 				if (m->matrix[i][j + 1] == NULL)
-					line(m->matrix[i][j]->d_2, m->matrix[i + 1][j]->d_2, m, 0xFF00FF);
+					line(m->matrix[i][j]->d_2, m->matrix[i + 1][j]->d_2, m, rgb);
 				j++;
 			}
 		}
 		if (m->matrix[i + 1] == NULL)
 		{
+			rgb = (m->matrix[i][j]->c->r << 16) | (m->matrix[i][j]->c->g << 8) | m->matrix[i][j]->c->b;
 			while (m->matrix[i][j])
 			{
 				if (m->matrix[i][j + 1] != NULL)
-					line(m->matrix[i][j]->d_2, m->matrix[i][j + 1]->d_2, m, 0xFF00FF);
+					line(m->matrix[i][j]->d_2, m->matrix[i][j + 1]->d_2, m, rgb);
 				j++;
 			}
 		}
